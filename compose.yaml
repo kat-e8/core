@@ -24,6 +24,19 @@ services:
       -n core-gateway
       -m 2048
     #  -r /restore.gwbk
+  smtp:
+    image: dockage/mailcatcher:0.8.2
+    container_name: smtp
+    ports:
+      - 1081:1080
+      - 1026:1025
+   # labels:
+   #   tsdproxy.enable: true
+   #   tsdprody.ephemeral: false
+    networks:
+      core-network:
+        aliases:
+          - smtp
 
 volumes:
   gw-data:
