@@ -24,9 +24,9 @@ services:
       -n core-gateway
       -m 2048
     #  -r /restore.gwbk
-  smtp:
+  smtp_srv:
     image: dockage/mailcatcher:0.8.2
-    container_name: smtp
+    container_name: smtp_srv
     ports:
       - 1081:1080
       - 1026:1025
@@ -36,7 +36,7 @@ services:
     networks:
       core-network:
         aliases:
-          - smtp
+          - smtp_srv
 
 volumes:
   gw-data:
