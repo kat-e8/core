@@ -32,7 +32,7 @@ services:
       - 1026:1025
     labels:
       tsdproxy.enable: true
-      tsdprody.ephemeral: false
+      tsdproxy.ephemeral: false
     networks:
       core-network:
         aliases:
