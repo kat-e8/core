@@ -1,12 +1,12 @@
 services:
-  test:
+  core-gw:
     image: inductiveautomation/ignition:8.1.48 
-    hostname: test
-    container_name: test
+    hostname: core-gw
+    container_name: core-gw
     ports:
       - 9098:8088
     volumes:
-      - test-data:/usr/local/bin/ignition/data
+      - gw-data:/usr/local/bin/ignition/data
    #   - ./gw-init/edge.gwbk:/restore.gwbk
      # - ./gw-init/edge-uuid.txt:/usr/local/bin/ignition/data/.uuid
     #  - ./gw-init/edge-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
@@ -17,7 +17,7 @@ services:
    #   tsdproxy.enable: true
    #   tsdproxy.ephemeral: false
     environment:
-      - IGNITION_EDITION=edge
+      - IGNITION_EDITION=standard
       - GATEWAY_ADMIN_PASSWORD=katlego
       - ACCEPT_IGNITION_EULA=Y
     command: >
@@ -26,5 +26,5 @@ services:
     #  -r /restore.gwbk
 
 volumes:
-  test-data:
+  gw-data:
 
