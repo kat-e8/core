@@ -50,7 +50,7 @@ services:
       - mssql-data:/var/opt/mssql
     restart: always
     networks:
-      primary-network:
+      core-network:
         aliases:
           - main-db
 
