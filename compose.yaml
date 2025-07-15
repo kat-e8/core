@@ -7,18 +7,18 @@ services:
     hostname: core_gw
     container_name: core_gw
     ports:
-      - 9091:8088
+      - 9097:8088
     volumes:
       - core_gw-data:/usr/local/bin/ignition/data
      # - ./gw-init/gateway.gwbk:/restore.gwbk
      # - ./gw-init/gateway-uuid.txt:/usr/local/bin/ignition/data/.uuid
      # - ./gw-init/gateway-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
-   # networks:
-   #   - core-network
-  #  environment:
-   #   - IGNITION_EDITION=standard
-   #   - GATEWAY_ADMIN_PASSWORD=katlego
-   #   - ACCEPT_IGNITION_EULA=Y
+    networks:
+      - core-network
+    environment:
+      - IGNITION_EDITION=standard
+      - GATEWAY_ADMIN_PASSWORD=katlego
+      - ACCEPT_IGNITION_EULA=Y
     command: >
       -n core
       -m 2048
