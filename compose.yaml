@@ -9,9 +9,9 @@ services:
       - 9091:8088
     volumes:
       - core_gw-data:/usr/local/bin/ignition/data
-      - ./gw-init/gateway.gwbk:/restore.gwbk
-      - ./gw-init/gateway-uuid.txt:/usr/local/bin/ignition/data/.uuid
-      - ./gw-init/gateway-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
+     # - ./gw-init/gateway.gwbk:/restore.gwbk
+     # - ./gw-init/gateway-uuid.txt:/usr/local/bin/ignition/data/.uuid
+     # - ./gw-init/gateway-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
     networks:
       - core-network
     environment:
@@ -21,7 +21,7 @@ services:
     command: >
       -n core_gw
       -m 2048
-      -r /restore.gwbk
+     # -r /restore.gwbk
   core_sql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
