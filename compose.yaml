@@ -39,7 +39,7 @@ services:
           - smtp_srv
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: mssql
+    container_name: mssql_srv
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=yourStrong(!)Password
