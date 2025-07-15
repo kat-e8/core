@@ -1,56 +1,30 @@
 services:
-  core:
-    build:
-      context: gw-build
-      args:
-        IGNITION_VERSION: 8.1.48
-    hostname: core_gw
-    container_name: core_gw
+  test:
+    image: inductiveautomation/ignition:8.1.48 
+    hostname: test
+    container_name: test
     ports:
-      - 9097:8088
+      - 9098:8088
     volumes:
-      - core_gw-data:/usr/local/bin/ignition/data
-     # - ./gw-init/gateway.gwbk:/restore.gwbk
-     # - ./gw-init/gateway-uuid.txt:/usr/local/bin/ignition/data/.uuid
-     # - ./gw-init/gateway-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
-    networks:
-      - core-network
+      - test-data:/usr/local/bin/ignition/data
+   #   - ./gw-init/edge.gwbk:/restore.gwbk
+     # - ./gw-init/edge-uuid.txt:/usr/local/bin/ignition/data/.uuid
+    #  - ./gw-init/edge-metro-keystore:/usr/local/bin/ignition/data/local/metro-keystore
+#      - ./pylib/speciallibrary.py:/usr/local/bin/ignition/user-lib/pylib/speciallibrary.py
+  #  networks:
+      - edge-network
+   # labels:
+   #   tsdproxy.enable: true
+   #   tsdproxy.ephemeral: false
     environment:
-      - IGNITION_EDITION=standard
+      - IGNITION_EDITION=edge
       - GATEWAY_ADMIN_PASSWORD=katlego
       - ACCEPT_IGNITION_EULA=Y
     command: >
-      -n core
+      -n test-gateway
       -m 2048
-     # -r /restore.gwbk
-  core_sql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: core_sql
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=yourStrong(!)Password
-      - MSSQL_PID=Developer
-    ports:
-      - 1434:1433
-    volumes:
-      - core_sql-data:/var/opt/mssql
-    restart: always
-    networks:
-      core-network:
-        aliases:
-          - main-db
-  core_smtp:
-    image: dockage/mailcatcher:0.8.2
-    container_name: core_smtp
-    ports:
-      - 1081:1080
-      - 1026:1025
-    networks:
-      core-network:
-        aliases:
-          - mail-srvr  
-networks:
-  core-network:
+    #  -r /restore.gwbk
+
 volumes:
-  core_gw-data:
-  core_sql-data:
+  test-data:
+
