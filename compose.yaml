@@ -37,9 +37,26 @@ services:
       core-network:
         aliases:
           - smtp_srv
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+      - MSSQL_PID=Developer
+    ports:
+      - 1434:1433
+    volumes:
+      - mssql-data:/var/opt/mssql
+    restart: always
+    networks:
+      primary-network:
+        aliases:
+          - main-db
 
 volumes:
   gw-data:
+  mssql-data:
 
 networks:
   core-network:
